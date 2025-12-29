@@ -1,0 +1,21 @@
+% โหลด CSV
+data = readmatrix('test_irradiation.csv');  % หรือ readtable แล้วแปลงเป็น array
+
+time = data(:,1);   % คอลัมน์เวลา
+irr  = data(:,2);   % คอลัมน์ค่า IRR
+irr_ts = timeseries(irr, time);
+irr_ts.Name = 'irr_signal';  % ตั้งชื่อ signal
+irr_ds = Simulink.SimulationData.Dataset;  % สร้าง dataset
+irr_ds = irr_ds.addElement(irr_ts);        % เพิ่ม timeseries ลงไป
+
+temp_data = readmatrix('test_modetemperature.csv');
+time_temp = temp_data(:,1);
+temp_val = temp_data(:,2);
+
+temp_ts = timeseries(temp_val, time_temp);
+temp_ts.Name = 'temp_signal';
+
+temp_ds = Simulink.SimulationData.Dataset;
+temp_ds = temp_ds.addElement(temp_ts);
+
+
