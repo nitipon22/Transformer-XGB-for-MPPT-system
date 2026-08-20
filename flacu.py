@@ -21,7 +21,7 @@ def adaptive_savgol(x, polyorder=3, max_window=101):
 data = pd.read_csv("Plant_1_Weather_Sensor_Data.csv")
 data["DATE_TIME"] = pd.to_datetime(data["DATE_TIME"])
 
-# 🔴 FIX UNIT
+#  FIX UNIT
 data["IRRADIATION"] = data["IRRADIATION"] * 1000  # kW/m² → W/m²
 
 # ===============================
